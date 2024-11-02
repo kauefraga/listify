@@ -1,0 +1,7 @@
+{
+  "name": "listify",
+  "private": true,
+  "workspaces": ["apps/*"],
+  "license": "MIT",
+  "author": "Kauê Fraga Rodrigues <rkauefraga@gmail.com>"
+}
