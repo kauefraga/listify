@@ -1,5 +1,7 @@
-import { createServer, defineRoutes } from './server'
+import { createServer, defineRoutes } from './server';
 
-const s = createServer()
+const server = createServer();
 
-defineRoutes(s).listen({ port: 3333 }).catch(reason => console.error(reason))
+defineRoutes(server);
+
+server.listen({ port: 3333 }).catch(reason => console.error(reason));
