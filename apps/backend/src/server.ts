@@ -1,9 +1,14 @@
-import Fastify from 'fastify';
+import cors from '@fastify/cors';
+import helmet from '@fastify/helmet';
+import fastify from 'fastify';
 
 export function createServer() {
-  const http = Fastify({
+  const http = fastify({
     logger: true,
   });
+
+  http.register(helmet);
+  http.register(cors);
 
   return http;
 }
