@@ -13,8 +13,12 @@ export function createServer() {
   return http;
 }
 
-export function defineRoutes(http: ReturnType<typeof createServer>) {
-  http.get('/', () => {
-    return { message: 'Welcome to Listify :)' };
-  });
+type ServerContext = ReturnType<typeof createServer>;
+
+export type Controller = (http: ServerContext) => void;
+
+export function defineRoutes(http: ServerContext, controllers: Controller[]) {
+  for (const controller of controllers) {
+    controller(http);
+  }
 }
