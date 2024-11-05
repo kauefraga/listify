@@ -17,6 +17,10 @@ type ServerContext = ReturnType<typeof createServer>;
 
 export type Controller = (http: ServerContext) => void;
 
+export function defineController(callback: Controller): Controller {
+  return callback;
+}
+
 export function defineRoutes(http: ServerContext, controllers: Controller[]) {
   for (const controller of controllers) {
     controller(http);

@@ -1,7 +1,7 @@
-import type { Controller } from '../server';
+import { defineController } from '../server';
 
-export const UserController: Controller = http => {
+export const UserController = defineController(http => {
   http.get('/v1/user/create', (request, reply) => {
     return reply.status(201).send({ message: 'Usuário criado com sucesso.' });
   });
-};
+});
