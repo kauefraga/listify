@@ -19,6 +19,12 @@ const AuthUserSchema = z.object({
   password: z.string(),
 });
 
+const EditUserSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string().max(50).optional(),
+  email: z.string().email().optional(),
+});
+
 const DeleteUserSchema = z.object({
   id: z.string().uuid(),
 });
@@ -83,6 +89,40 @@ export const UserController = defineController(http => {
       user: { ...existingUser, password: undefined },
       token,
     });
+  });
+
+  http.put('/v1/user/edit', async (request, reply) => {
+    const { id, name, email } = EditUserSchema.parse(request.body);
+
+    const [existingUser] = await db.select().from(user).where(eq(user.id, id)).limit(1);
+
+    if (!existingUser) {
+      return reply.status(409).send({
+        message: 'The user does not exist.',
+      });
+    }
+
+    const [editedUser] = await db
+      .update(user)
+      .set({
+        name,
+        email,
+      })
+      .where(eq(user.id, id))
+      .returning({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        created_at: user.created_at,
+      });
+
+    if (!editedUser) {
+      return reply.send(500).send({
+        message: 'Failed to edit user details.',
+      });
+    }
+
+    return reply.status(200).send(editedUser);
   });
 
   http.delete('/v1/user/delete', async (request, reply) => {
