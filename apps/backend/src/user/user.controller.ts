@@ -6,6 +6,7 @@ import { db } from '../database';
 import { user } from '../database/schema';
 import { env } from '../env';
 import { defineController } from '../server';
+import { authUser } from './user.auth';
 
 const CreateUserSchema = z.object({
   name: z.string().max(50),
@@ -23,10 +24,6 @@ const EditUserSchema = z.object({
   id: z.string().uuid(),
   name: z.string().max(50).optional(),
   email: z.string().email().optional(),
-});
-
-const DeleteUserSchema = z.object({
-  id: z.string().uuid(),
 });
 
 export const UserController = defineController(http => {
@@ -92,7 +89,8 @@ export const UserController = defineController(http => {
   });
 
   http.put('/v1/user/edit', async (request, reply) => {
-    const { id, name, email } = EditUserSchema.parse(request.body);
+    const { id } = authUser(request.headers);
+    const { name, email } = EditUserSchema.parse(request.body);
 
     const [existingUser] = await db.select().from(user).where(eq(user.id, id)).limit(1);
 
@@ -126,7 +124,7 @@ export const UserController = defineController(http => {
   });
 
   http.delete('/v1/user/delete', async (request, reply) => {
-    const { id } = DeleteUserSchema.parse(request.body);
+    const { id } = authUser(request.headers);
 
     const [existingUser] = await db.select().from(user).where(eq(user.id, id)).limit(1);
 
