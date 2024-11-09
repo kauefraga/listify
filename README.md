@@ -69,3 +69,9 @@ Built using the technologies mentioned early and these below.
 ## License
 
 This project is licensed under the MIT License - See the [LICENSE](https://github.com/kauefraga/listify/blob/main/LICENSE) for more information.
+
+---
+
+If Listify has helped you, consider giving it a star ⭐
+
+🇧🇷: Se você gostou do projeto, considere dar uma estrela no repositório ⭐, fazer [uma doação para eu tomar um cafézinho](https://www.pixme.bio/kauefraga) ☕ ou comentar sobre no [Bluesky](https://bsky.app/) 💙
