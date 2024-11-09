@@ -1,6 +1,7 @@
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import fastify from 'fastify';
+import { ZodError } from 'zod';
 
 export function createServer() {
   const http = fastify({
@@ -9,6 +10,14 @@ export function createServer() {
 
   http.register(helmet);
   http.register(cors);
+
+  http.setErrorHandler((error, _, reply) => {
+    if (error instanceof ZodError) {
+      return reply.status(400).send({ message: error.errors[0].message });
+    }
+
+    return reply.status(500).send({ message: error.message });
+  });
 
   return http;
 }
