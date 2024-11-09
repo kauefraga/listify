@@ -1,7 +1,9 @@
 import { hash } from 'argon2';
+import jwt from 'jsonwebtoken';
 import { z } from 'zod';
 import { db } from '../database';
 import { user } from '../database/schema';
+import { env } from '../env';
 import { defineController } from '../server';
 
 const CreateUserSchema = z.object({
@@ -27,6 +29,11 @@ export const UserController = defineController(http => {
       return reply.status(400).send({ message: 'Failed to create user.' });
     }
 
-    return reply.status(201).send(newUser);
+    const token = jwt.sign({ id: newUser.id, name: newUser.name }, env.JWT_SECRET, { expiresIn: '1d' });
+
+    return reply.status(201).send({
+      user: newUser,
+      token,
+    });
   });
 });
