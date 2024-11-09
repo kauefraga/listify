@@ -19,6 +19,10 @@ const AuthUserSchema = z.object({
   password: z.string(),
 });
 
+const DeleteUserSchema = z.object({
+  id: z.string().uuid(),
+});
+
 export const UserController = defineController(http => {
   http.post('/v1/user/create', async (request, reply) => {
     const { name, email, password } = CreateUserSchema.parse(request.body);
@@ -61,7 +65,7 @@ export const UserController = defineController(http => {
       .limit(1);
 
     if (!existingUser) {
-      return reply.status(400).send({
+      return reply.status(409).send({
         message: 'The user does not exist.',
       });
     }
@@ -79,5 +83,27 @@ export const UserController = defineController(http => {
       user: { ...existingUser, password: undefined },
       token,
     });
+  });
+
+  http.delete('/v1/user/delete', async (request, reply) => {
+    const { id } = DeleteUserSchema.parse(request.body);
+
+    const [existingUser] = await db.select().from(user).where(eq(user.id, id)).limit(1);
+
+    if (!existingUser) {
+      return reply.status(409).send({
+        message: 'The user does not exist.',
+      });
+    }
+
+    const { rowCount } = await db.delete(user).where(eq(user.id, id));
+
+    if (rowCount === 0) {
+      return reply.send(500).send({
+        message: 'Failed to delete user.',
+      });
+    }
+
+    return reply.status(204).send();
   });
 });
