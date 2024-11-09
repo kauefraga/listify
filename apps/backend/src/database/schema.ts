@@ -10,15 +10,15 @@ export const user = pgTable('user', {
 
 export const list = pgTable('list', {
   id: uuid('id').primaryKey().defaultRandom(),
-  name: varchar('name', { length: 255 }).notNull(),
-  content: text('content'),
+  name: varchar('name', { length: 255 }).notNull().unique(),
+  content: text('content').notNull(),
   description: text('description'),
   type: text('type', { enum: ['bullet', 'check', 'numbered'] }).notNull(),
   user_id: uuid('user_id')
     .references(() => user.id)
     .notNull(),
   created_at: timestamp('created_at').notNull().defaultNow(),
-  updated_at: timestamp('updated_at').notNull().defaultNow(),
+  updated_at: timestamp('updated_at'),
 });
 
 export const tag = pgTable('tag', {
