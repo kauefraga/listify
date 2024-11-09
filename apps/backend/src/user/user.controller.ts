@@ -1,4 +1,4 @@
-import { hash, verify } from 'argon2';
+import argon2 from 'argon2';
 import { eq, or } from 'drizzle-orm';
 import jwt from 'jsonwebtoken';
 import { z } from 'zod';
@@ -23,7 +23,7 @@ export const UserController = defineController(http => {
   http.post('/v1/user/create', async (request, reply) => {
     const { name, email, password } = CreateUserSchema.parse(request.body);
 
-    const passwordHash = await hash(password);
+    const passwordHash = await argon2.hash(password);
 
     const [newUser] = await db.insert(user).values({ name, email, password: passwordHash }).returning({
       id: user.id,
@@ -66,7 +66,7 @@ export const UserController = defineController(http => {
       });
     }
 
-    const isPasswordMatching = await verify(existingUser.password, password);
+    const isPasswordMatching = await argon2.verify(existingUser.password, password);
     if (!isPasswordMatching) {
       return reply.status(400).send({
         message: 'The password does not match.',
