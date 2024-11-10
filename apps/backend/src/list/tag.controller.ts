@@ -22,10 +22,6 @@ const ListIdParamSchema = z.object({
   list_id: z.string().uuid(),
 });
 
-const TagIdParamSchema = z.object({
-  tag_id: z.string().uuid(),
-});
-
 const ListTagParamsSchema = z.object({
   list_id: z.string().uuid(),
   tag_id: z.string().uuid(),
