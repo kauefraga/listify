@@ -58,6 +58,8 @@ About the technologies used, in general:
 
 ### Back end
 
+In the document [API](API.md) you can find the API reference.
+
 Built using the technologies mentioned early and these below.
 
 - [Fastify](https://fastify.dev/) with [fastify/cors](https://www.npmjs.com/package/@fastify/cors) and [fastify/helmet](https://www.npmjs.com/package/@fastify/helmet) plugins
