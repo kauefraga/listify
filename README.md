@@ -1,7 +1,7 @@
 # Listify
 
-[![Licença do projeto](https://img.shields.io/github/license/kauefraga/listify)](https://github.com/kauefraga/listify/blob/main/LICENSE)
-[![Último commit](https://img.shields.io/github/last-commit/kauefraga/listify/main)](https://github.com/kauefraga/listify)
+[![Listify's license](https://img.shields.io/github/license/kauefraga/listify)](https://github.com/kauefraga/listify/blob/main/LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/kauefraga/listify/main)](https://github.com/kauefraga/listify)
 
 > Your favorite list aggregator!
 
@@ -58,7 +58,7 @@ About the technologies used, in general:
 
 ### Back end
 
-In the document [API](API.md) you can find the API reference.
+The [API reference](API.md) cover all the back end routes and their details.
 
 Built using the technologies mentioned early and these below.
 
@@ -67,6 +67,10 @@ Built using the technologies mentioned early and these below.
 - [PostgreSQL](https://www.postgresql.org/) with [Docker](https://www.docker.com/)
 - [JWT](https://jwt.io/)
 - [Argon2](https://www.npmjs.com/package/argon2)
+
+### Front end
+
+The draft design can be found at [listify's figma](https://www.figma.com/design/RDbnqN7yUQLA6koqzneQ12/Listify?node-id=0-1&t=IkQlP2LI8cUCQKT4-1).
 
 ## License
 
