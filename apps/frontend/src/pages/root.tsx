@@ -44,7 +44,7 @@ export function Root() {
             <Search className="translate-x-10" />
             <input
               type="text"
-              className="px-14 w-96 py-3 bg-black/5 shadow outline-none rounded border-2 border-transparent transition-colors focus:border-pink-600 hover:border-pink-400"
+              className="px-14 w-96 py-3 bg-black/5 shadow outline-none rounded border-2 border-transparent transition-colors focus:border-listify-dark-pink hover:border-listify-pink"
               id="search-input"
               value={search}
               onChange={e => setSearch(e.target.value)}
