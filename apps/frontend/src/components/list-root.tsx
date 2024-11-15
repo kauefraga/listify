@@ -5,5 +5,5 @@ interface ListRootProps {
 }
 
 export function ListRoot({ children }: ListRootProps) {
-  return <ul className="grid grid-cols-3 gap-4">{children}</ul>;
+  return <ul className="grid grid-cols-1 gap-5 md:grid-cols-3">{children}</ul>;
 }
