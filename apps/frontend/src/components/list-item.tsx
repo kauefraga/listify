@@ -8,9 +8,9 @@ interface ListItemProps {
 
 export function ListItem({ list }: ListItemProps) {
   return (
-    <li className="bg-black/5 overflow-scroll space-y-2 h-56 border-2 border-transparent transition-colors hover:border-listify-pink p-4 rounded shadow-sm">
+    <li className="h-56 space-y-2 overflow-scroll rounded border-2 border-transparent bg-black/5 p-4 shadow-sm transition-colors hover:border-listify-pink">
       <p className="font-medium">{list.name}</p>
-      <ul className="list-disc list-inside">
+      <ul className="list-inside list-disc">
         {list.content.split('\n').map(item => (
           <li key={item}>{item}</li>
         ))}

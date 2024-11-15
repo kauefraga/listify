@@ -3,11 +3,11 @@ import type { InputHTMLAttributes } from 'react';
 
 export function SearchInput({ ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return (
-    <div className="flex items-center -translate-x-5">
+    <div className="-translate-x-5 flex items-center">
       <Search className="translate-x-10" />
       <input
         type="text"
-        className="px-14 w-96 py-3 bg-black/5 shadow outline-none rounded border-2 border-transparent transition-colors focus:border-listify-dark-pink hover:border-listify-pink"
+        className="w-96 rounded border-2 border-transparent bg-black/5 px-14 py-3 shadow outline-none transition-colors hover:border-listify-pink focus:border-listify-dark-pink"
         {...props}
       />
     </div>

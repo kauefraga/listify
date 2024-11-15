@@ -37,7 +37,7 @@ export function Root() {
   const filteredLists = lists.filter(list => list.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-3">
+    <div className="mx-auto w-full max-w-5xl p-3">
       <div className="flex flex-col items-center gap-10">
         <header>
           <SearchInput value={search} onChange={e => setSearch(e.target.value)} placeholder="Shopping list..." />

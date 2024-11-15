@@ -1,4 +1,18 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-	"extends": ["@zhaoworks/biome"]
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["@zhaoworks/biome"],
+  "linter": {
+    "rules": {
+      "nursery": {
+        "useSortedClasses": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "attributes": ["className"],
+            "functions": ["cn"]
+          }
+        }
+      }
+    }
+  }
 }
