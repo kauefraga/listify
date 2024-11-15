@@ -5,7 +5,7 @@
 
 > Your favorite list aggregator!
 
-I was feeling that there are no options for simply scratching a list of daily tasks or a shopping list, so here's Listify, **an easy to use board for lists**.
+I was feeling that there are no simple options for scratching a bunch of lists (daily tasks list, shopping list...), so here's Listify, **an easy to use board for lists**.
 
 We all love lists, but where do you keep them? Maybe in WhatsApp or in a plain text file somewhere? Listify is **fully-featured** and aims to be **as convenient as your current solution**.
 
