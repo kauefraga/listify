@@ -10,13 +10,13 @@ interface ListState {
 
 export const useListStore = create<ListState>()(
   persist(
-    (set) => ({
+    set => ({
       lists: [],
-      createList: (list) => set((state) => ({ lists: [...state.lists, list] })),
-      removeList: (id) => set((state) => ({ lists: state.lists.filter(list => list.id !== id) }))
+      createList: list => set(state => ({ lists: [...state.lists, list] })),
+      removeList: id => set(state => ({ lists: state.lists.filter(list => list.id !== id) })),
     }),
     {
       name: 'list-storage',
-    },
-  ),
+    }
+  )
 );

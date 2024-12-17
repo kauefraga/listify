@@ -24,21 +24,18 @@ export function Root() {
           </Link>
         </header>
         <div className="w-full">
-          {lists.length !== 0
-            ? (
-              <ListRoot>
-                {filteredLists.map(list => (
-                  <ListItem key={list.id} list={list} />
-                ))}
-              </ListRoot>
-            )
-            : (
-              <div className="text-center text-lg leading-loose">
-                <p>No lists registered!</p>
-                <p>Try clicking in the + (plus) button.</p>
-              </div>
-            )
-          }
+          {lists.length !== 0 ? (
+            <ListRoot>
+              {filteredLists.map(list => (
+                <ListItem key={list.id} list={list} />
+              ))}
+            </ListRoot>
+          ) : (
+            <div className="text-center text-lg leading-loose">
+              <p>No lists registered!</p>
+              <p>Try clicking in the + (plus) button.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
