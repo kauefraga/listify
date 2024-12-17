@@ -12,10 +12,24 @@ export function NewList() {
     content: '',
     description: '',
   });
+  const [error, setError] = useState('');
+
   const { createList } = useListStore();
 
   function handleForm(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const lines = list.content.split('\n');
+    for (const line of lines) {
+      // line.trim().length <= 5 is to check
+      // if the only thing in the line is the biggest symbol we have: '- [x]'
+      if (line.trim().length === 0 || line.trim().length <= 5) {
+        setError('Please fill out the content field. Don\'t leave empty space.');
+        setTimeout(() => setError(''), 5000);
+
+        return;
+      }
+    }
 
     // split and get the first line, then split again
     // and get the first part of the line (list symbol)
@@ -52,6 +66,7 @@ export function NewList() {
             placeholder="Favorite games..."
             value={list.name}
             onChange={e => setList({ ...list, name: e.target.value })}
+            required
           />
         </div>
 
@@ -71,16 +86,21 @@ export function NewList() {
           <label htmlFor="content">Content</label>
           <textarea
             id="content"
-            className="min-h-96 rounded border-2 border-transparent bg-black/5 px-5 py-3 shadow outline-none transition-colors hover:border-listify-pink focus:border-listify-dark-pink"
+            className="min-h-80 rounded border-2 border-transparent bg-black/5 px-5 py-3 shadow outline-none transition-colors hover:border-listify-pink focus:border-listify-dark-pink"
             placeholder="- Street Fighter"
             value={list.content}
             onChange={e => setList({ ...list, content: e.target.value })}
+            required
           />
         </div>
 
+        <p id="error" className="rounded bg-red-700 p-3 text-center text-white" hidden={error.length === 0}>
+          {error}
+        </p>
+
         <button
           type="submit"
-          className="rounded border-2 border-transparent bg-black/5 px-5 py-3 shadow outline-none transition-colors hover:border-listify-pink active:border-listify-dark-pink">
+          className="mt-5 rounded border-2 border-transparent bg-black/5 px-5 py-3 shadow outline-none transition-colors hover:border-listify-pink active:border-listify-dark-pink">
           Save
         </button>
       </form>
