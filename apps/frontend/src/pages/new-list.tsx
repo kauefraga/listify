@@ -1,19 +1,8 @@
 import { type FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import type { List } from '../schemas/list';
+import { type List, symbolToType } from '../schemas/list';
 import { useListStore } from '../stores/list-store';
-
-const symbolToType = {
-  '*': 'bullet',
-  '-': 'bullet',
-  '+': 'bullet',
-  '0.': 'numbered',
-  '1.': 'numbered',
-  '[': 'check',
-  '[]': 'check',
-  '[x]': 'check',
-};
 
 export function NewList() {
   const navigate = useNavigate();
@@ -21,7 +10,7 @@ export function NewList() {
   const [list, setList] = useState({
     name: '',
     content: '',
-    description: ''
+    description: '',
   });
   const { createList } = useListStore();
 
