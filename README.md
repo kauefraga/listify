@@ -12,8 +12,8 @@ We all love lists, but where do you keep them? Maybe in WhatsApp or in a plain t
 
 Access now: [listify.kauefraga.dev](https://listify.kauefraga.dev/)
 
-> [!IMPORTANT]
-> Work in progress...
+- [x] Lists board
+- [x] Create & remove lists
 
 ## How to setup the development environment
 
@@ -91,6 +91,7 @@ Crafted using:
 - [TanStack Query](https://tanstack.com/query/v4) with [the native Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Lucide](https://lucide.dev/)
+- [Zustand](https://www.npmjs.com/package/zustand)
 
 ## License
 
